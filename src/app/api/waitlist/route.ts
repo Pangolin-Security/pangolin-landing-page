@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'noreply@pangolinsecurity.com',
+        from: 'onboarding@resend.dev',
         to: ['james.badi@pangolinsecurity.com'],
         subject: 'New Pangolin Security Waitlist Signup!',
         html: `<h2>New signup: ${email}</h2><p>Timestamp: ${timestamp}</p>`,
