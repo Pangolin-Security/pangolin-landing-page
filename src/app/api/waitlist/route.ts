@@ -10,9 +10,8 @@ export async function POST(request: NextRequest) {
     }
     
     console.log('Received email:', email);
-    console.log('API Key exists:', !!process.env.RESEND_API_KEY);
     
-    // Send notification to you (using VERIFIED sender)
+    // Send notification to you (using YOUR domain!)
     const notificationResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -20,14 +19,14 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
+        from: 'noreply@pangolinsecurity.com',
         to: ['james.badi@pangolinsecurity.com'],
         subject: 'New Pangolin Security Waitlist Signup!',
         html: `<h2>New signup: ${email}</h2><p>Timestamp: ${timestamp}</p>`,
       }),
     });
     
-    // Send confirmation to the user (using VERIFIED sender) 
+    // Send confirmation to the user (using YOUR domain!)
     const confirmationResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -35,7 +34,7 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev',
+        from: 'noreply@pangolinsecurity.com',
         to: [email],
         subject: 'Welcome to Pangolin Security! 🦎',
         html: `
