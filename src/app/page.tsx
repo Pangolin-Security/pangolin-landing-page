@@ -12,35 +12,35 @@ export default function Home() {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  try {
-    // Submit to Vercel function
-    const response = await fetch('/api/waitlist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        timestamp: new Date().toISOString()
-      }),
-    });
+    e.preventDefault();
     
-    if (response.ok) {
-      setShowThankYou(true);
-      setEmail('');
-    } else {
+    try {
+      // Submit to Vercel function
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString()
+        }),
+      });
+      
+      if (response.ok) {
+        setShowThankYou(true);
+        setEmail('');
+      } else {
+        // Still show thank you for good UX
+        setShowThankYou(true);
+        setEmail('');
+      }
+    } catch (error) {
       // Still show thank you for good UX
       setShowThankYou(true);
       setEmail('');
     }
-  } catch (error) {
-    // Still show thank you for good UX
-    setShowThankYou(true);
-    setEmail('');
-  }
-};
+  };
 
   const closeModal = () => {
     setShowThankYou(false);
@@ -387,6 +387,4 @@ export default function Home() {
       </footer>
     </div>
   );
-} 
- 
- 
+}
