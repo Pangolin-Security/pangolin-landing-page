@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 export async function POST(request: NextRequest) {
   try {
     const { email, timestamp } = await request.json();
@@ -36,11 +35,12 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         from: 'noreply@pangolinsecurity.com',
         to: [email],
-        subject: 'Welcome to Pangolin Security! 🦎',
+        subject: 'Welcome to Pangolin Security!',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #1e293b 0%, #1e40af 100%); padding: 30px; text-align: center; color: white;">
-              <h1>🦎 Welcome to the Family!</h1>
+              <img src="https://www.pangolinsecurity.com/app_icon_ios_180x180.png" alt="Pangolin Security" style="width: 64px; height: 64px; margin-bottom: 16px; border-radius: 8px;">
+              <h1>Welcome to the Family!</h1>
               <p>Thank you for joining the Pangolin Security waitlist</p>
             </div>
             <div style="padding: 30px; background: white;">
